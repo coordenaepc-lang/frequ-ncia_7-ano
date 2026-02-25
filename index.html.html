@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<!-- Disable GitHub Jekyll processing -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frequência - 7º Ano</title>
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg,#4e73df,#1cc88a);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  margin:0;
+}
+
+.container{
+  background:white;
+  padding:30px;
+  border-radius:15px;
+  width:350px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+  text-align:center;
+}
+
+h2{
+  margin-bottom:20px;
+  color:#333;
+}
+
+select, button{
+  width:100%;
+  padding:12px;
+  margin:10px 0;
+  border-radius:8px;
+  border:1px solid #ccc;
+  font-size:14px;
+}
+
+button{
+  background:#4e73df;
+  color:white;
+  border:none;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+button:hover{
+  background:#2e59d9;
+}
+
+.sucesso{
+  margin-top:15px;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h2>Frequência - 7º Ano</h2>
+
+<select id="nome">
+<option>Caio Farias de Carvalho</option>
+<option>Arthur Felipe Soares do Nascimento</option>
+<option>Israel Vieira de Melo</option>
+<option>João Gabriel Gonçalves Simões</option>
+<option>Kelvin da Gama Queiroz</option>
+<option>João Alberto Mendonça da Silva</option>
+<option>Samuel Barbosa de Souza</option>
+<option>Maitê Queiroz Sampaio</option>
+<option>Pietro Alexandre Viégas da Silva</option>
+<option>Clarice dos Santos Oliveira</option>
+<option>Roger Ofir Oliveira Pereira</option>
+<option>Luisa Eduarda da Silva Carmo</option>
+<option>João Pedro Pimenta Gomes</option>
+<option>Arthur Cadmiel da Silva Oliveira</option>
+<option>Maria Sofia Santos Carvalho</option>
+<option>Ana Luiza</option>
+</select>
+
+<button onclick="registrar('Entrada')">Registrar Entrada</button>
+<button onclick="registrar('Saída')">Registrar Saída</button>
+<div id="msg" class="sucesso"></div>
+
+</div>
+
+<script>
+
+const url = "https://script.google.com/macros/s/AKfycbxxOYqXf3P8tV019CymGNf1y3_hzJd9NTgHepkTnTbYpze8SDP-92zXRpRW4iB3Iqq6/exec";
+
+function registrar(tipo){
+
+  const nome = document.getElementById("nome").value;
+  const msg = document.getElementById("msg");
+
+  if(!nome){
+    msg.style.color = "red";
+    msg.innerText = "Digite o nome.";
+    return;
+  }
+
+  msg.style.color = "black";
+  msg.innerText = "Registrando...";
+
+  const linkFinal = url + 
+    "?nome=" + encodeURIComponent(nome) +
+    "&tipo=" + encodeURIComponent(tipo);
+
+  const iframe = document.createElement("iframe");
+  iframe.style.display = "none";
+  iframe.src = linkFinal;
+  document.body.appendChild(iframe);
+
+  setTimeout(() => {
+    msg.style.color = "green";
+    msg.innerText = "Registro feito com sucesso!";
+    document.body.removeChild(iframe);
+  }, 1500);
+}
+
+</script>
+
+
+
+
